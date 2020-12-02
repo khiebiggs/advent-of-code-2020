@@ -18,8 +18,8 @@ for i in range(0, len(entries) - 2) :
             third = entries[k]
             total_sum = first + second + third
             if (total_sum) == 2020:
-                print(f'found in {counter + 1} tries')
                 print(first * second * third)
+                print(f'found in {counter + 1} tries')
                 quit()
             elif (total_sum) < 2020:
                 k -= 1
