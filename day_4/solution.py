@@ -8,27 +8,30 @@ def validate_fields(required, seen, optional):
     ans = difference.issubset(optional)
     return(ans)
 
+def check_range(value, start, end):
+    return value >= start and value <= end
+
 def validate_values(key, value):
     if key == 'cid':
         return True # we don't need to validate this
     if key == 'byr':
         value_as_num = int(value)
-        return value_as_num >= 1920 and value_as_num <= 2002
+        return check_range(value_as_num, 1920, 2002)
     if key == 'iyr':
         value_as_num = int(value)
-        return value_as_num >= 2010 and value_as_num <= 2020
+        return check_range(value_as_num, 2010, 2020)
     if key == 'eyr':
         value_as_num = int(value)
-        return value_as_num >= 2020 and value_as_num <= 2030
+        return check_range(value_as_num, 2020, 2030)
     if key == 'hgt':
         front = value[:-2]
         back = value[-2:]
         if front.isnumeric() and back in ['cm','in']:
             front = int(front)
             if back == 'cm':
-                return front >= 150 and front <= 193
+                return check_range(front, 150, 193)
             else:
-                return front >= 59 and front <= 76
+                return check_range(front, 59, 76)
     if key == 'hcl':
         if value[0] == '#':
             count = 0
